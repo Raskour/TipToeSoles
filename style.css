@@ -1,0 +1,571 @@
+/* reset css ----------------------->*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Removing user agent default margin */
+:where(body, h1, h2, h3, h4, ul, p) {
+  margin: 0;
+}
+
+:root {
+  --button-width: 120px;
+  --input-height: 40px; /* form input field */
+  --font-size-sm: 0.85rem;
+  --font-size-rg: 1rem;
+  --font-size-md: 1.25rem;
+  --font-size-lg: 1.5rem;
+
+  --font-weight-light: 300;
+  --font-weight-reg: 400;
+  --font-weight-bold: 700;
+  --color-primary: rgb(208, 139, 32);
+  --color-secondary: rgb(238, 213, 174);
+  --color-tertiary: rgb(7, 122, 153);
+  --color-neutral: rgb(66, 71, 84);
+  --box-shadow-subtle: 0 2px 2px #000;
+  --border-radius-rg: 8px;
+  --page-inline-padding: 12px;
+
+  --box-shadow-sm: 0 5px 5px 2px hsla(225, 55%, 9%, 8%);
+  --box-shadow-md: 0 16px 32px 0 rgba(10, 16, 34, 0.2), 0 0 0 transparent;
+}
+
+body {
+  font-size: var(--font-size-rg);
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* consistent focus for accessibility */
+*:not(main):focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-neutral);
+}
+
+input:hover,
+textarea:hover {
+  border-color: var(--color-tertiary);
+}
+
+input:focus,
+input:active,
+textarea:focus,
+textarea:active {
+  border-color: black;
+}
+
+/* utility class */
+.flow {
+  --flow-space: 1em;
+}
+
+.flow > * + * {
+  margin-top: var(--flow-space);
+}
+
+/* custom styles  --------------------------> */
+a {
+  color: inherit;
+}
+
+a:visited {
+  color: #112a46;
+}
+/* Skip link styles */
+.skip-link:not(:focus),
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+.skip-link {
+  top: 1rem;
+  left: 1rem;
+  z-index: 99;
+}
+
+li::marker {
+  color: var(--color-primary);
+}
+
+/* ----------header----------------*/
+/* mobile first design approach */
+header {
+  padding-inline: 16px;
+  padding-block-start: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: var(--color-primary);
+  position: relative;
+  z-index: 1;
+}
+
+/* action items: profile, wish list, cart ---- */
+.action {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* logo */
+img[alt='logo'] {
+  width: 4rem;
+  aspect-ratio: 1 / 1;
+}
+
+.icon-button-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* removing the default button styles */
+.icon-button-container button {
+  appearance: none;
+  border: none;
+  background-color: transparent;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: var(--color-tertiary);
+}
+
+nav > ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  flex-wrap: wrap;
+  padding: 0;
+  margin-block: 0;
+  margin-inline: -16px; /* compensating the header padding  */
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-color: var(--color-neutral);
+}
+
+/* nav items */
+nav li > a {
+  display: block;
+  text-align: center;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 200ms ease-in;
+}
+
+nav li > a:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-neutral);
+}
+
+/* active nav link */
+.nav-container a[aria-current='page'] {
+  background-color: #fff;
+  color: var(--color-tertiary);
+  font-weight: bold;
+}
+
+nav li:not(:last-child) {
+  border-bottom: 1px solid var(--color-neutral);
+}
+
+form[role='search'] {
+  position: relative;
+  margin-inline: -16px;
+}
+
+/* selecting all input types except submit */
+input:not(input[type='submit']) {
+  padding-inline: 12px;
+  width: 100%;
+  height: var(--input-height);
+  text-overflow: ellipsis; /* to show ... when text cuts off */
+  white-space: nowrap;
+}
+
+.search {
+  position: absolute;
+  color: var(--color-tertiary);
+  right: 8px;
+  top: 8px;
+}
+
+main {
+  margin-block: 2rem;
+  padding-inline: var(--page-inline-padding);
+}
+
+/* header ends -------------------*/
+
+.hero-overlay {
+  text-align: center;
+}
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 24px;
+  border: 2px solid;
+  background-color: var(--color-primary);
+  transition: background-color, color, 200ms, ease-in;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.button:hover {
+  color: var(--color-neutral);
+  background-color: var(--color-secondary);
+}
+
+a.button {
+  gap: 1rem;
+  text-decoration: none;
+  text-shadow: none;
+}
+
+/* making the color of the svg inherit the button color */
+a.button .icon,
+a.button:hover .icon {
+  color: inherit;
+}
+
+.cta-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.cta-container > * {
+  flex: 1;
+  height: 100px;
+}
+
+.latest-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(30rem, 100%), 1fr));
+  gap: 2rem;
+}
+
+.responsive-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
+}
+
+.latest-products div {
+  position: relative;
+  box-shadow: var(--box-shadow-sm);
+  transition: transform 0.2s ease 0s, box-shadow 0.2s ease 0s;
+  will-change: transform, box-shadow;
+}
+
+.latest-products div:hover {
+  box-shadow: var(--box-shadow-md);
+  transform: translateY(-5px) translateZ(0px);
+}
+
+.latest-products a:focus {
+  outline: 2px solid;
+  outline-offset: -5px;
+  box-shadow: none;
+}
+
+.latest-products a > p {
+  position: absolute;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-primary);
+  bottom: 0.5rem;
+  right: 1rem;
+}
+
+.latest-products a:hover > p {
+  background-color: var(--color-secondary);
+}
+
+/* divider */
+.divider {
+  height: 2px;
+  background-color: grey;
+  margin-inline: auto;
+  margin-block: 2rem;
+  max-width: min(100%, 40vw);
+}
+
+a[href*='men-shoes'],
+a[href*='women-shoes'] {
+  font-size: var(--font-size-md);
+}
+
+.info {
+  padding-inline: 12px;
+  max-width: 800px;
+  text-align: center;
+  margin-inline: auto;
+}
+
+.signup-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-block-end: 2rem;
+}
+
+.signup-form input[type='email'] {
+  flex-grow: 1;
+  flex-basis: 70%;
+}
+
+.signup-form input[type='submit'] {
+  flex-grow: 0;
+  flex-basis: var(--button-width);
+}
+
+.heading {
+  max-width: 280px;
+  border-bottom: 3px solid;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr; /* one column on mobile device */
+  gap: 1.25rem;
+  margin-block-end: 4rem;
+}
+
+.product-details {
+  margin-block-start: 1rem;
+}
+
+/* card  */
+.card {
+  display: flex;
+  box-shadow: var(--box-shadow-sm);
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-self: flex-start;
+  float: left;
+  position: relative;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1rem;
+  padding-block-end: 1rem;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.card-info h3 {
+  font-weight: var(--font-weight-light);
+}
+
+.basket {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.basket button {
+  padding: 4px 16px;
+}
+
+.wish {
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  border: none;
+  appearance: none;
+  background-color: transparent;
+  color: #000;
+}
+
+.wish svg {
+  color: inherit;
+}
+
+.wish svg:hover {
+  fill: var(--color-tertiary);
+}
+
+/* For increasing the readibility of the paragraphs */
+.p-max {
+  max-width: 80ch;
+}
+
+.contact-table {
+  text-align: left;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-inline: 16px;
+  background-color: var(--color-primary);
+  margin-top: auto;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+footer > ul {
+  padding-block: 2rem;
+  padding-inline: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: center;
+  gap: 1rem;
+}
+
+footer > ul a {
+  padding-inline: 8px;
+}
+
+footer > ul a:hover {
+  color: var(--color-neutral);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.input-wrapper textarea {
+  width: 100%;
+}
+
+.contact-form input[type='submit'] {
+  margin-left: auto;
+}
+
+.social {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.social svg:hover {
+  color: var(--color-tertiary);
+}
+
+div[role="alert"] {
+  background-color: lightseagreen;
+  color: white;
+  margin-block: 1rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+  body {
+    --page-inline-padding: 24px;
+    font-size: var(--font-size-md);
+  }
+  nav > ul {
+    flex-direction: row;
+    border: none;
+  }
+
+  nav li:not(:last-child) {
+    border-bottom-color: transparent;
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 0.5rem;
+    padding-inline: 12px;
+  }
+
+  /* active nav link */
+  .nav-container a[aria-current='page'] {
+    border-bottom: 4px solid;
+    background-color: unset;
+    color: unset;
+  }
+
+  .cta-container {
+    max-width: 60%;
+    margin-inline: auto;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .input-wrapper {
+    flex-direction: row;
+  }
+  /* aligning side by side */
+  .input-wrapper * {
+    flex: 1;
+  }
+
+  form[role='search'] {
+    flex: 1;
+    max-width: 400px;
+    margin-inline: 0px;
+  }
+
+  footer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
