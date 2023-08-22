@@ -372,7 +372,7 @@ a[href*='women-shoes'] {
 
 .card-container {
   display: grid;
-  grid-template-columns: minmax(400px, 1fr) 3fr; /* one column on mobile device */
+  grid-template-columns: 1fr; /* one column on mobile device */
   gap: 1.25rem;
   margin-block-end: 4rem;
 }
