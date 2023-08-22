@@ -372,13 +372,17 @@ a[href*='women-shoes'] {
 
 .card-container {
   display: grid;
-  grid-template-columns: 1fr; /* one column on mobile device */
+  grid-template-columns: minmax(400px, 1fr) 3fr; /* one column on mobile device */
   gap: 1.25rem;
   margin-block-end: 4rem;
 }
 
 .product-details {
   margin-block-start: 1rem;
+}
+
+.product-description {
+  max-width: 80ch;
 }
 
 /* card  */
@@ -547,7 +551,7 @@ div[role="alert"] {
   }
 
   .card-container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(400px, 1fr) 3fr;
   }
 
   .input-wrapper {
